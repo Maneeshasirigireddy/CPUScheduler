@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./docs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Process & Disk Scheduling Algorithms Simulation</title>
+</head>
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.html" style="font-size: 17px;">Process & Disk 
+                Scheduling Algorithms Simulation</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="docs.html">DOCS</a></li>
+                    <!-- <li><a href="blog.html">BLOG</a></li> -->
+                    <li><a href="Simulate.html">DISK SIMULATOR</a></li>
+                    <li><a href="./backend/ganttcharts.html">PROCESS SIMULATOR</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+
+    </section>
+
+
+
+    <section class="container_docs" >
+        <h1>What is CPU Scheduling?</h1>
+        <p>CPU Scheduling is a process of determining which process will own CPU for execution while another process is
+            on hold. The main task of CPU scheduling is to make sure that whenever the CPU remains idle, the OS at least
+            select one of the processes available in the ready queue for execution. The selection process will be
+            carried out by the CPU scheduler. It selects one of the processes in memory that are ready for execution.
+        </p>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Why CPU Scheduling?</h1>
+        <p>A typical process involves both I/O time and CPU time. In a uni programming system like MS-DOS, time spent
+            waiting for I/O is wasted and CPU is free during this time. In multi programming systems, one process can
+            use CPU while another is waiting for I/O. This is possible only with process scheduling.<br><br>
+            <strong>Objectives of Process Scheduling Algorithm</strong>
+            <li>Max CPU utilization [Keep CPU as busy as possible]</li>
+            <li>Fair allocation of CPU.</li>
+            <li>Max throughput [Number of processes that complete their execution per time unit]</li>
+            <li>Min turnaround time [Time taken by a process to finish execution]</li>
+            <li>Min waiting time [Time a process waits in ready queue]</li>
+            <li>Min response time [Time when a process produces first response]</li>
+
+        </p>
+    </section>
+
+    <section class="container_docs special" data-aos="zoom-in-up">
+        <h1>Important CPU scheduling Terminologies</h1>
+        <!-- <p>A typical process involves both I/O time and CPU time. In a uni programming system like MS-DOS, time spent waiting for I/O is wasted and CPU is free during this time. In multi programming systems, one process can use CPU while another is waiting for I/O. This is possible only with process scheduling.<br><br> -->
+        <li><strong>Burst Time/Execution Time:</strong> It is a time required by the process to complete execution. It
+            is also called running time.</li>
+        <li><strong>Arrival Time:</strong> when a process enters in a ready state</li>
+        <li><strong>Finish Time:</strong> when process complete and exit from a system</li>
+        <li><strong>Multiprogramming:</strong> A number of programs which can be present in memory at the same time.
+        </li>
+        <li><strong>Jobs:</strong> It is a type of program without any kind of user interaction.</li>
+        <li><strong>User:</strong> It is a kind of program having user interaction.</li>
+        <li><strong>Process:</strong> It is the reference that is used for both job and user.</li>
+        <li><strong>CPU/IO burst cycle:</strong> Characterizes process execution, which alternates between CPU and I/O
+            activity. CPU times are shorter than the time of I/O.</li>
+
+        </p>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Types of CPU Scheduling</h1>
+        <p>There is mainly two major types of CPU Scheduling which is listed below.There is sub-types of this algorithm also. we have discussed all algorithm in details below. </p>
+        <li>Preemptive Algorithm</li>
+        <li>Non Preemptive Algorithm</li>
+        <br>
+
+        <p><strong class="bold">Preemptive Scheduling</strong><br><br>
+            In Preemptive Scheduling, the tasks are mostly assigned with their priorities. Sometimes it is important to
+            run a task with a higher priority before another lower priority task, even if the lower priority task is
+            still running. The lower priority task holds for some time and resumes when the higher priority task
+            finishes its execution.<br><br>
+            <br>
+            <strong class="bold">Non-Preemptive Scheduling</strong><br><br>
+            In this type of scheduling method, the CPU has been allocated to a specific process. The process that keeps
+            the CPU busy will release the CPU either by switching context or terminating. It is the only method that can
+            be used for various hardware platforms. That’s because it doesn’t need special hardware (for example, a
+            timer) like preemptive scheduling.
+        </p>
+
+        
+
+    </section>
+
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Types of CPU scheduling Algorithm</h1>
+        <p>There are mainly six types of process scheduling algorithm</p>
+        <!-- <lo> -->
+        <li>First Come First Serve (FCFS)</li>
+        <li>Shortest-Job-First (SJF) Scheduling</li>
+        <li>Shortest Remaining Time</li>
+        <li>Priority Scheduling</li>
+        <li>Round Robin Scheduling</li>
+        <li>Multilevel Queue Scheduling</li>
+        <br>
+    </section>
+
+
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>1) First Come First Serve</h1>
+        <p>First Come First Serve is the full form of FCFS. It is the easiest and most simple CPU scheduling algorithm.
+            In this type of algorithm, the process which requests the CPU gets the CPU allocation first. This scheduling
+            method can be managed with a FIFO queue.<br><br>
+
+            As the process enters the ready queue, its PCB (Process Control Block) is linked with the tail of the queue.
+            So, when CPU becomes free, it should be assigned to the process at the beginning of the queue.</p>
+
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. It is simple and easy to understand.<br></p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. The process with less execution time suffer i.e. waiting time is often quite long.<br><br>
+            2. Favors CPU Bound process then I/O bound process.<br><br>
+            3. FCFS algorithm is particularly troublesome for time-sharing systems, where it is important that each user
+            get a share of the CPU at regular intervals.</p>
+            <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>2) Shortest Remaining Time</h1>
+        <p>The full form of SRT is Shortest remaining time. It is also known as SJF preemptive scheduling. In this
+            method, the process will be allocated to the task, which is closest to its completion. This method prevents
+            a newer ready state process from holding the completion of an older process.<br></p>
+
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. The main advantage of the SRTF algorithm is that it makes the processing of the jobs faster than the SJF
+            algorithm, mentioned it’s overhead charges are not counted.</p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. In SRTF, the context switching is done a lot more times than in SJN due to more consumption of the CPU's
+            valuable time for processing. The consumed time of CPU then adds up to its processing time and which then
+            diminishes the advantage of fast processing of this algorithm.<br></p>
+            <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>3) Priority Based Scheduling</h1>
+        <p>Priority scheduling is a method of scheduling processes based on priority. In this method, the scheduler
+            selects the tasks to work as per the priority.<br><br>
+
+            Priority scheduling also helps OS to involve priority assignments. The processes with higher priority should
+            be carried out first, whereas jobs with equal priorities are carried out on a round-robin or FCFS basis.
+            Priority can be decided based on memory requirements, time requirements, etc.<br><br>
+
+        </p>
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. This provides a good mechanism where the relative importance of each process maybe precisely defined.<br>
+        </p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. If high priority processes use up a lot of CPU time, lower priority processes may starve and be postponed
+            indefinitely.The situation where a process never gets scheduled to run is called starvation<br><br>
+            2. Another problem is deciding which process gets which priority level assigned to it..<br></p>
+            <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>4) Round-Robin Scheduling</h1>
+        <p>Round robin is the oldest, simplest scheduling algorithm. The name of this algorithm comes from the
+            round-robin principle, where each person gets an equal share of something in turn. It is mostly used for
+            scheduling algorithms in multitasking. This algorithm method helps for starvation free execution of
+            processes.<br><br></p>
+
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. Every process gets an equal share of the CPU.<br><br>
+            2. RR is cyclic in nature, so there is no starvation.</p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. Setting the quantum too short, increases the overhead and lowers the CPU efficiency, but setting it too
+            long may cause poor response to short processes.<br><br>
+            2. Average waiting time under the RR policy is often long.<br>
+        </p>
+        <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>5) Shortest Job First</h1>
+        <p>SJF is a full form of (Shortest job first) is a scheduling algorithm in which the process with the shortest
+            execution time should be selected for execution next. This scheduling method can be preemptive or
+            non-preemptive. It significantly reduces the average waiting time for other processes awaiting
+            execution.<br></p>
+
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. Shortest jobs are favored.<br><br>
+            2. It is provably optimal, in that it gives the minimum average waiting time for a given set of processes.
+        </p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. SJF may cause starvation, if shorter processes keep coming. This problem is solved by aging..<br><br>
+            2. It cannot be implemented at the level of short term CPU scheduling.<br></p>
+
+            <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>6) Multiple-Level Queues Scheduling</h1>
+        <p>This algorithm separates the ready queue into various separate queues. In this method, processes are assigned
+            to a queue based on a specific property of the process, like the process priority, size of the memory,
+            etc.<br><br>
+
+            However, this is not an independent scheduling OS algorithm as it needs to use other types of algorithms in
+            order to schedule the jobs.<br><br></p>
+
+        <h4>
+            <li>Advantages</li>
+        </h4>
+        <p>1. Application of separate scheduling for various kind of processes is possible
+            .<br></p>
+
+        <h4>
+            <li>Disadvantages</li>
+        </h4>
+        <p>1. The lowest level process faces starvation problem.<br></p>
+
+        <button class="btn_1" onclick="gotoSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Disk Scheduling</h1>
+        <p>Disk scheduling algorithms are used by operating systems to determine the order 
+            in which disk I/O requests are serviced. When multiple processes or applications request 
+            data from or write data to a disk, the disk scheduling algorithm decides the most efficient 
+            sequence in which to fulfill those requests, aiming to minimize disk head movements and optimize disk performance.
+        </p>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>Types of Disk scheduling Algorithm</h1>
+        <p>There are mainly six types of Disk scheduling algorithm</p>
+        <!-- <lo> -->
+        <li>First Come First Serve (FCFS)</li>
+        <li>Shortest Seek Time First (SSTF)</li>
+        <li>SCAN</li>
+        <li>Circular SCAN (C-SCAN)</li>
+        <li>LOOK</li>
+        <li>Circular LOOK (C-LOOK)</li>
+        <br>
+    </section>
+
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>1) First Come First Serve (FCFS)</h1>
+        <p>First-Come, First-Served (FCFS) is a simple disk scheduling algorithm used
+             by operating systems to service disk I/O requests. In FCFS, the requests are serviced in the
+              order they arrive, with no consideration for the location of the requests on the disk or their urgency. 
+              The operating system services the I/O requests based on their arrival time.<br><br></p>
+
+        <h4>
+            <li>Here's how FCFS works:</li>
+        </h4>
+        <p>
+
+            1. Request Arrival: As disk I/O requests are generated by processes or applications, they are added to the request queue in the order of their arrival.<br><br>
+            
+            2. Servicing: The disk scheduler selects the first request in the queue and begins servicing it. The disk arm moves to the requested track, and the data transfer occurs.<br><br>
+            
+            3. Completion: Once the servicing of a request is complete, the disk scheduler moves on to the next request in the queue and repeats the process.<br><br></p>
+
+        <h4>
+            <li>Advantages of FCFS:</li>
+        </h4>
+        <p>1. Simplicity: FCFS is a straightforward algorithm that is easy to understand and implement. It does not require complex calculations or heuristics.<br><br>
+            2. Fairness: FCFS provides fairness in servicing disk requests. As the name suggests, the requests are serviced in the order they arrive, ensuring that all requests receive equal treatment.<br><br>
+            3. Low overhead: FCFS has minimal overhead in terms of computational complexity and system resources. It does not require maintaining complex data structures or making frequent calculations.
+        </p>
+        <h4>
+            <li>Disadvantages of FCFS:</li>
+        </h4>
+        <p>
+            1. Poor performance with varying seek times: FCFS may result in poor performance when there is a mix of disk requests with varying seek times. If requests are scattered randomly on the disk, the disk arm may have to perform long seeks between distant tracks, leading to increased overall access time.<br><br>
+            2. Inefficient use of disk: FCFS does not consider the position of the disk arm or the location of the requests on the disk. As a result, it may lead to inefficient utilization of the disk, especially when requests are spread out across different tracks.<br><br>
+            3. No consideration of priority: FCFS treats all requests equally without considering their importance or urgency. This can be problematic in situations where certain requests need to be prioritized over others, such as real-time or critical tasks.<br><br>
+            4. Lack of adaptability: FCFS does not dynamically adapt to changing conditions or workload. It follows a fixed order based solely on the arrival time of requests, which may not be optimal in scenarios where the disk workload or access patterns change frequently.
+
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>2) Shortest Seek Time First (SSTF)</h1>
+        <p>Shortest Seek Time First (SSTF) is a disk scheduling algorithm used by operating systems to minimize the seek time of disk I/O requests. It selects the request with the shortest seek time from the current position of the disk arm.<br><br></p>
+
+        <h4>
+            <li>Here's how the SSTF algorithm works:</li>
+        </h4>
+        <p>
+
+            1. The operating system maintains a queue or list of pending disk I/O requests.<br><br>
+            
+            2. When a new request arrives, the algorithm calculates the seek time required to reach the
+             requested track from the current position of the disk arm.<br><br>
+            
+            3. The request with the shortest seek time is selected for servicing.<br><br>
+
+            4. After servicing a request, the algorithm updates the current position of the 
+             arm to the track of the completed request.<br><br>
+
+            5. Steps 2-4 are repeated until all requests are serviced.
+        
+        </p>
+
+        <h4>
+            <li>Advantages of SSTF:</li>
+        </h4>
+        <p>1. Minimizes Seek Time: SSTF aims to reduce the seek time by always selecting the request 
+            that requires the least movement of the disk arm. This can result in faster disk I/O operations 
+            compared to other scheduling algorithms.<br><br>
+            2. Simple Implementation: SSTF is relatively simple to implement compared to more complex algorithms like SCAN or C-SCAN. 
+        </p>
+
+        <h4>
+            <li>Disadvantages of SSTF:</li>
+        </h4>
+        <p>
+            1. Request Starvation: SSTF may lead to request starvation, where certain requests 
+            located far from the current position of the disk arm may never be serviced. This can happen if there 
+            is a constant flow of requests closer to the disk arm's current position, causing distant requests to be continuously bypassed.<br><br>
+            2. Potential for Disk Thrashing: In situations where there is a heavy load of disk I/O requests, SSTF may 
+            result in excessive movement of the disk arm back and forth. This constant repositioning can lead to disk 
+            thrashing, which can degrade overall system performance.<br><br>
+            3. Variability in Service Times: SSTF does not consider the service time of requests when selecting 
+            the next one. This means that a request that requires a longer service time may be selected before one with a 
+            shorter service time, leading to potential delays.
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>3) SCAN </h1>
+        <p>SCAN (also known as Elevator algorithm or C-SCAN) is a disk scheduling algorithm that moves the disk arm from one end of the disk to the other, servicing all the pending requests along its path. Once it reaches the end, it reverses direction and starts servicing requests in the opposite direction.<br><br></p>
+
+        <h4>
+            <li>Here's how the SCAN algorithm works:</li>
+        </h4>
+        <p>
+
+            1. Initially, the disk arm is at a particular track and there are pending I/O requests to be serviced.<br><br>
+            
+            2. The disk arm starts moving in a particular direction (either towards the outermost track or the innermost track) to service the requests in that direction.<br><br>
+            
+            3. As it moves, it services all the requests present on the tracks it encounters. The requests are serviced in the order they are encountered.<br><br>
+
+            4. If there are no more requests in the current direction, the disk arm reaches the end of the disk.<br><br>
+
+            5. At the end, the disk arm reverses its direction and starts moving towards the other end of the disk.<br><br>
+
+            6. As it moves back, it services all the pending requests in the opposite direction.<br><br>
+
+            7. Once all the requests have been serviced, the SCAN algorithm completes its operation.
+        
+        </p>
+
+        <h4>
+            <li>Advantages of SCAN:</li>
+        </h4>
+        <p>1. SCAN provides a fair servicing order as it services all the pending requests in both directions. <br><br>
+            2. It ensures that all requests are eventually serviced, avoiding indefinite starvation for any particular request.<br><br>
+            3. It is relatively simple to implement.
+        </p>
+
+        <h4>
+            <li>Disadvantages of SCAN:</li>
+        </h4>
+        <p>
+            1. Requests located at the ends of the disk experience longer wait times, as the disk arm moves to the end before reversing its direction.<br><br>
+            2. SCAN may not be efficient when there are scattered requests across the disk, as it requires the arm to move the entire disk's length.
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>4) Circular SCAN (C-SCAN)</h1>
+        <p>Circular SCAN (C-SCAN) is a disk scheduling algorithm that aims to reduce the waiting time for I/O requests at the ends of the disk by eliminating unnecessary backtracking. It is an improvement over the SCAN algorithm.<br><br></p>
+
+        <h4>
+            <li>Here's how the Circular SCAN algorithm works:</li>
+        </h4>
+        <p>
+
+            1. Initially, the disk arm starts at one end of the disk (e.g., the outermost track).<br><br>
+            
+            2. The arm moves in the direction towards the other end, serving the requests on the way.<br><br>
+            
+            3. Once the arm reaches the last request at the end of the disk, it immediately jumps to the other end without serving any requests in the reverse direction.<br><br>
+
+            4. The arm then starts moving in the same fixed direction again, servicing the requests along the path.<br><br>
+
+            5. This process continues until all the requests have been serviced.
+
+
+        </p>
+
+        <h4>
+            <li>Advantages of Circular SCAN:</li>
+        </h4>
+        <p>1. Reduced waiting time for requests at the ends: C-SCAN eliminates the need for the disk arm to reverse direction and traverse the entire disk. This significantly reduces the waiting time for I/O requests located at the ends of the disk. By immediately jumping to the other end without servicing any requests in the reverse direction, C-SCAN minimizes the potential delay for these requests.<br><br>
+            2. Predictable and consistent servicing order: C-SCAN provides a more predictable and consistent servicing order compared to SCAN. Since the arm always moves in the same fixed direction, the order in which requests are serviced remains the same for each revolution. This can be advantageous in certain applications where a consistent response time is desired.<br><br>
+            3. Simplicity: The C-SCAN algorithm is relatively simple to implement and understand. It involves a circular movement pattern without complex decision-making processes. This simplicity makes it easier to implement in operating systems and requires fewer computational resources.
+
+
+        </p>
+
+        <h4>
+            <li>Disadvantages of Circular SCAN:</li>
+        </h4>
+        <p>
+            1. Potential for long waiting times: Although C-SCAN reduces waiting time for requests at the ends of the disk, it can still lead to long waiting times for specific requests. If a request arrives just after the arm has passed its location and the arm is moving away from that end, the request will have to wait until the arm completes a full revolution. Similarly, requests located just before the jump point may experience longer wait times. This uneven distribution of waiting times can be a disadvantage in certain scenarios.<br><br>
+            2. Inefficient for randomly scattered requests: If the I/O requests are randomly scattered across the disk, C-SCAN may not provide optimal performance. The algorithm is designed to optimize performance for requests located at the ends of the disk, but it may not perform well when requests are spread evenly throughout the disk. In such cases, other algorithms like SSTF (Shortest Seek Time First) or LOOK may provide better performance.<br><br>
+            3. Lack of fairness: C-SCAN does not prioritize requests based on their arrival time or urgency. It follows a fixed circular movement pattern, which means that some requests located in certain areas of the disk may experience longer wait times compared to others. This lack of fairness can be a disadvantage in systems where fairness in servicing I/O requests is crucial.
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>5) LOOK </h1>
+        <p>LOOK is a disk scheduling algorithm used by operating systems to determine the order in which disk I/O requests are serviced. It is an improvement over the SCAN algorithm, aiming to reduce the seek time and improve overall disk performance.<br><br>
+
+            The LOOK algorithm starts servicing requests from the current position of the disk arm and scans only up to the last request in its current direction. It does not move the disk arm to the end of the disk without any consideration for requests along the way, which was a drawback of the SCAN algorithm. By eliminating unnecessary arm movement to the end of the disk, LOOK can achieve better performance.<br><br></p>
+
+        <h4>
+            <li>Here's how the LOOK algorithm works:</li>
+        </h4>
+        <p>
+
+            1. Start: The disk arm is initially positioned at a particular track or sector on the disk.<br><br>
+            
+            2. Direction: LOOK keeps track of the current direction of disk arm movement. Initially, it can be set to either inward or outward.<br><br>
+            
+            3. Servicing Requests: The algorithm starts servicing the pending I/O requests from the current position in the chosen direction.<br><br>
+
+            4. Scanning: While servicing the requests, LOOK scans the disk in the chosen direction, seeking the next request to service. It looks for the nearest request in the current direction and services it.<br><br>
+
+            5. Reversal: Once LOOK reaches the last request in its current direction, it reverses the direction of disk arm movement without visiting the end of the disk. This eliminates unnecessary movement and reduces the seek time.<br><br>
+
+            6. Servicing in Reverse Direction: After reversing the direction, LOOK continues servicing the requests in the new direction, again seeking the nearest request and servicing it.<br><br>
+
+            7. Termination: The algorithm terminates when all the pending requests have been serviced.
+
+
+        
+        </p>
+
+        <h4>
+            <li>Advantages of LOOK:</li>
+        </h4>
+        <p>1. Improved Performance: LOOK reduces the seek time by dynamically adjusting the scanning range based on the pending requests. It only scans up to the last request in the current direction, eliminating unnecessary movement to the end of the disk. This results in improved disk performance compared to algorithms like SCAN.<br><br>
+            2. Reduced Waiting Time: LOOK prioritizes servicing requests based on their proximity to the current position. Requests closer to the current position are serviced earlier, reducing their waiting time. This leads to better overall response times for disk I/O operations.<br><br>
+            3. Efficient Disk Utilization: By scanning in both directions and reversing when necessary, LOOK ensures that all requests are eventually serviced. It provides a fair servicing order and optimizes the disk's utilization by minimizing idle time.
+        </p>
+
+        <h4>
+            <li>Disadvantages of SCAN:</li>
+        </h4>
+        <p>
+            1. Potential for Starvation: LOOK may cause starvation for requests located far from the current position. If there is a continuous stream of requests in the current direction, requests located in the opposite direction may experience long wait times or even be ignored indefinitely. This can be a drawback in systems with high disk traffic and unevenly distributed requests.<br><br>
+            2. Lack of Global Optimization: LOOK focuses on optimizing seek time locally, but it does not consider the global disk scheduling picture. It does not prioritize requests based on their urgency or any other global metric. As a result, certain requests may experience longer wait times or poor performance in certain scenarios.<br><br>
+            3. Sensitivity to Workload Distribution: The performance of LOOK is influenced by the distribution of requests on the disk. If the requests are clustered in a specific region, LOOK may lead to inefficient movement and suboptimal performance. It may be less effective in handling workloads with highly scattered requests.
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    <section class="container_docs" data-aos="zoom-in-up">
+        <h1>6) Circular LOOK (C-LOOK): </h1>
+        <p>Circular LOOK (C-LOOK) is a disk scheduling algorithm that is an optimization of the LOOK algorithm. It is designed to reduce the waiting time for disk requests by minimizing unnecessary arm movements. C-LOOK operates on a circular list of disk requests, where the disk arm moves in only one direction and jumps to the beginning of the disk queue after reaching the last request.<br><br></p>
+
+        <h4>
+            <li>Here's how the Circular LOOK algorithm works:</li>
+        </h4>
+        <p>
+
+            1. Start Position: C-LOOK starts by servicing requests closest to the current position of the disk arm. It scans the requests in the direction of increasing track numbers until it reaches the last request in that direction.<br><br>
+            
+            2. Reverse Direction: Once the disk arm reaches the last request in its current direction, it immediately moves to the other end of the disk without servicing any requests along the way.<br><br>
+            
+            3. Service Requests in the Reverse Direction: Upon reaching the other end of the disk, the disk arm reverses its direction and starts servicing the requests in the reverse direction. It scans the requests in the opposite direction until it reaches the last request in that direction.<br><br>
+
+            4. Repeat: After reaching the last request in the reverse direction, the disk arm jumps back to the beginning of the disk queue and starts the process again by scanning in the initial direction.
+        
+        </p>
+
+        <h4>
+            <li>Advantages of Circular LOOK:</li>
+        </h4>
+        <p>1. Reduced Arm Movements: C-LOOK minimizes unnecessary arm movements by scanning in only one direction and jumping back to the beginning of the disk queue. This leads to reduced seek time and improved disk performance.<br><br>
+            2. Efficient for Concentrated Requests: C-LOOK is especially effective when there is a high concentration of disk requests in certain areas of the disk. It optimizes the servicing of these requests and reduces the waiting time for them.<br><br>
+            3. Simple Implementation: C-LOOK is relatively straightforward to implement compared to more complex disk scheduling algorithms. It involves scanning in a single direction and jumping back to the beginning, making it easier to understand and implement in operating systems.
+        </p>
+
+        <h4>
+            <li>Disadvantages of Circular LOOK:</li>
+        </h4>
+        <p>
+            1. Uneven Request Servicing: While C-LOOK reduces the waiting time for requests at the ends of the disk, it may still result in requests located just before the reverse direction experiencing long wait times. This uneven request servicing can lead to suboptimal performance if a significant number of requests are located in that region.<br><br>
+            2. Lack of Fairness: C-LOOK does not guarantee fairness in servicing requests. If there is a continuous stream of requests in one direction, the requests in the other direction may be starved, leading to potential performance issues.<br><br>
+            3. Sensitivity to Request Distribution: The performance of C-LOOK is highly dependent on the distribution of disk requests. If the requests are spread evenly across the disk, the algorithm may not provide significant advantages over other scheduling algorithms.<br><br>
+            4. Limited Adaptability: C-LOOK does not dynamically adjust its behavior based on changing disk workloads or request patterns. It follows a fixed pattern of scanning and reversing, which may not be optimal in all scenarios.
+        </p>
+            <button class="btn_1" onclick="gotoDiskSimulator();">Go to Simulator</button>
+        <br>
+    </section>
+    
+    
+
+
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        function gotoSimulator(){
+            location.href = ("./backend/ganttcharts.html");
+        }
+        function gotoDiskSimulator(){
+            location.href = ("Simulate.html");
+        }
+    </script>
+
+
+    <!-- For the animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200, // offset (in px) from the original trigger point
+        duration: 800
+      });
+    </script>
+</body>
+
+</html>
